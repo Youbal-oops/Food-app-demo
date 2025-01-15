@@ -1,9 +1,0 @@
-{
-  "name": "delivr-wireframe",
-  "version": "2.0.0",
-  "scripts": {
-    "build": "esbuild src/app.ts --bundle --format=iife --outfile=dist/app.js",
-    "dev": "esbuild src/app.ts --bundle --format=iife --outfile=dist/app.js --watch"
-  },
-  "devDependencies": { "esbuild": "^0.21.0", "typescript": "^5.0.0" }
-}
