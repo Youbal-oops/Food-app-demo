@@ -1,6 +1,6 @@
 # Delivr Wireframe v2
 
-Open `dist/index.html` in a browser — no server needed.
+Open `dist/index.html` in a browser just made to decide a ui layout.
 
 ## Screens
 - **Login** — role picker (Customer / Admin), sign in / sign up toggle
