@@ -1,0 +1,131 @@
+.food-sculpture {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  height: clamp(320px, 39vw, 580px);
+  isolation: isolate;
+  background: transparent;
+  border-radius: 24px;
+  touch-action: pan-y;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.food-sculpture:focus-visible {
+  outline: 2px solid var(--food-viewer-accent, #a6532f);
+  outline-offset: 5px;
+}
+
+.food-sculpture__viewport,
+.food-sculpture__fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.food-sculpture__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  touch-action: pan-y !important;
+}
+
+.food-sculpture[data-interactive="true"][data-state="ready"] .food-sculpture__canvas {
+  cursor: grab;
+}
+
+.food-sculpture[data-interactive="true"] .food-sculpture__canvas:active {
+  cursor: grabbing;
+}
+
+.food-sculpture__fallback {
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.food-sculpture__fallback-art {
+  display: block;
+  width: min(100%, 640px);
+  max-height: 100%;
+  overflow: visible;
+}
+
+.food-sculpture__controls {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  white-space: nowrap;
+  color: var(--food-viewer-ink, #675d4e);
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: .02em;
+}
+
+.food-sculpture__hint {
+  opacity: .72;
+}
+
+.food-sculpture__reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid rgba(100, 78, 48, .15);
+  border-radius: 999px;
+  background: rgba(255, 250, 238, .86);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: background .18s ease, border-color .18s ease;
+  backdrop-filter: blur(8px);
+}
+
+.food-sculpture__reset:hover {
+  background: #fffaf0;
+  border-color: rgba(100, 78, 48, .34);
+}
+
+.food-sculpture__reset:focus-visible {
+  outline: 2px solid var(--food-viewer-accent, #a6532f);
+  outline-offset: 3px;
+}
+
+.food-sculpture__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  .food-sculpture {
+    min-height: 280px;
+    height: clamp(300px, 85vw, 440px);
+  }
+
+  .food-sculpture__controls {
+    bottom: 6px;
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .food-sculpture__reset {
+    transition: none;
+  }
+}
