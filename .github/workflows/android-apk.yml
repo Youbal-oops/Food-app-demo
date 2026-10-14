@@ -10,6 +10,8 @@ jobs:
   apk:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -46,3 +48,12 @@ jobs:
           name: delivr-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+      - name: Publish latest release
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk delivr-debug.apk
+          gh release delete latest --cleanup-tag --yes || true
+          gh release create latest delivr-debug.apk --target "$GITHUB_SHA" --prerelease --title "Delivr debug APK (latest)" --notes "Debug APK built from $GITHUB_SHA"
